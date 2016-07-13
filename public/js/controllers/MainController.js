@@ -14,5 +14,8 @@
                    bears = BearsServices.bears;
                    console.log(bears);
                  });
+    BearsServices.create();
+    BearsServices.delete();
+    BearsServices.update();
   }
 })();
