@@ -16,9 +16,11 @@
     };
     return object;
 
-    function createBear(descr){
+    function createBear(si, ty, loc){
       var info = {
-        description: descr
+        size: si,
+        type: ty,
+        location: loc
       };
       return $http.post(baseUrl+'bears', info)
                   .then(function(response){
