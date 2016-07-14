@@ -16,10 +16,10 @@
     };
     return object;
 
-    function createBear(si, color, loc){
+    function createBear(si, type, loc){
       var info = {
         size: si,
-        color: color,
+        type: type,
         location: loc
       };
       return $http.post(baseUrl+'bears', info)

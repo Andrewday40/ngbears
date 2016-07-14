@@ -23,11 +23,11 @@
                    });
     }
 
-    function createBear(size, color, location){
-      BearsServices.create(size, color, location)
+    function createBear(size, type, location){
+      BearsServices.create(size, type, location)
                    .then(function(){
                      $scope.size = '';
-                     $scope.color = '';
+                     $scope.type = '';
                      $scope.location = '';
                      getBears();
                    });
