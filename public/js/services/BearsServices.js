@@ -16,38 +16,38 @@
     };
     return object;
 
-    function createBear(si, ty, loc){
+    function createBear(si, color, loc){
       var info = {
         size: si,
-        type: ty,
+        color: color,
         location: loc
       };
       return $http.post(baseUrl+'bears', info)
                   .then(function(response){
                     console.log('create', response);
                     getAll();
-                  })
+                  });
     }
     function getAll(){
       return $http.get(baseUrl+'bears')
                   .then(function(response){
                     object.bears = response.data;
                     console.log('BearsServices bears', object.bears);
-                  })
+                  });
     }
     function updateBear(id, newBear){
       return $http.put(baseUrl+'bears/'+id, newBear)
                   .then(function(response){
                     console.log('update', response);
                     getAll();
-                  })
+                  });
     }
     function deleteBear(id){
       return $http.delete(baseUrl+'bears/'+id)
                   .then(function(response){
                     console.log('delete', response);
                     getAll();
-                  })
+                  });
     }
   }
 })();

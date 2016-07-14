@@ -6,16 +6,39 @@
   MainController.$inject = ['$scope', 'BearsServices'];
 
   function MainController($scope, BearsServices){
-    $scope.message = 'Hey you!!!';
+    $scope.bears = BearsServices.bears;
+    $scope.create = createBear;
+    $scope.delete = deleteBear;
+    getBears();
 
-    var bears;
-    BearsServices.readAll()
-                 .then(function(response){
-                   bears = BearsServices.bears;
-                   console.log(bears);
-                 });
-    BearsServices.create();
-    BearsServices.delete();
-    BearsServices.update();
+
+
+
+
+    function getBears(){
+      BearsServices.readAll()
+                   .then(function(){
+                     $scope.bears = BearsServices.bears;
+                     console.log($scope.bears);
+                   });
+    }
+
+    function createBear(size, color, location){
+      BearsServices.create(size, color, location)
+                   .then(function(){
+                     $scope.size = '';
+                     $scope.color = '';
+                     $scope.location = '';
+                     getBears();
+                   });
+    }
+
+    function deleteBear(id){
+      console.log(id);
+      BearsServices.delete(id)
+                   .then(function(){
+                     getBears();
+                   });
+    }
   }
 })();

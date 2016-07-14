@@ -7,9 +7,33 @@
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-  <div ng-controller='MainController'>
-    <input type="text" ng-model='message'>
-    {{message}}
+  <div class='container' ng-controller='MainController'>
+    <div class="row">
+      <div class="class col-md-8 col-md-offset-2">
+        <div class='form-group'>
+          <label>Size</label>
+          <input type="text" class='form-control' ng-model='size'>
+          <label>Color</label>
+          <input type="text" class='form-control' ng-model='color'>
+          <label>Location</label>
+          <input type="text" class='form-control' ng-model='location'>
+        </div>
+      </div>
+      <div class="class col md-8">
+        <button class="btn btn-warning btn-block" ng-click='create(size, color, location)'>Create</button>
+      </div>
+    </div>
+    <div row='row' ng-repeat='eachItem in bears'>
+      <div class='jumbotron' data-id='{{eachItem.id}}'>
+        <button class='btn-sm btn-danger pull-right' ng-click='delete(eachItem.id)'>X</button>
+        <h1>{{eachItem.size}}</h1>
+        <h1>{{eachItem.color}}</h1>
+        <h1>{{eachItem.location}}</h1>
+        <p><strong>isAwake</strong> {{eachItem.isAwake}}</p>
+        <p><strong>hasKids</strong> {{eachItem.hasKids}}</p>
+        <p><strong>isHungry</strong> {{eachItem.isHungry}}</p>
+      </div>
+    </div>
   </div>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.js'></script>
