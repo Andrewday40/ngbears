@@ -10,5 +10,5 @@ server.get('/', function(request, response){
 });
 
 server.listen(port, function(){
-  console.log('Now listening to port:', port)
+  console.log('Now listening to port:', port);
 });

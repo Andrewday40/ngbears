@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>ngbears</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://bootswatch.com/superhero/bootstrap.css">
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
@@ -17,21 +17,42 @@
           <input type="text" class='form-control' ng-model='type'>
           <label>Location</label>
           <input type="text" class='form-control' ng-model='location'>
+          <!-- <button class='btn-sm btn-primary' ng-click='geoFindMe()'>Show location</button>
+          <div id='out'></div> -->
         </div>
       </div>
       <div class="class col md-8">
-        <button class="btn btn-warning btn-block" ng-click='create(size, type, location)'>Create</button>
+        <button class="btn btn-primary btn-block" ng-click='create(size, type, location)'>Create</button>
       </div>
     </div>
     <div row='row' ng-repeat='eachItem in bears'>
       <div class='jumbotron' data-id='{{eachItem.id}}'>
         <button class='btn-sm btn-danger pull-right' ng-click='delete(eachItem.id)'>X</button>
-        <h1>{{eachItem.size}}</h1>
-        <h1>{{eachItem.type}}</h1>
-        <h1>{{eachItem.location}}</h1>
+        <h1 ng-hide='eachItem.editing'>{{eachItem.size}}</h1>
+        <h1 ng-hide='eachItem.editing'>{{eachItem.type}}</h1>
+        <h1 ng-hide='eachItem.editing'>{{eachItem.location}}</h1>
+        <div class="form-group" ng-show='eachItem.editing'>
+          <input type="text" ng-model='eachItem.size'> <br>
+          <input type="text" ng-model='eachItem.type'> <br>
+          <input type="text" ng-model='eachItem.location'> <br>
+        </div>
         <p><strong>isAwake</strong> {{eachItem.isAwake}}</p>
+        <div ng-show='eachItem.editing'>
+          <input type="radio" ng-value='true' ng-model='eachItem.isAwake'> True <br>
+          <input type="radio" ng-value='false' ng-model='eachItem.isAwake'> False <br>
+        </div>
         <p><strong>hasKids</strong> {{eachItem.hasKids}}</p>
+        <div ng-show='eachItem.editing'>
+          <input type="radio" ng-value='true' ng-model='eachItem.hasKids'> True <br>
+          <input type="radio" ng-value='false' ng-model='eachItem.hasKids'> False <br>
+        </div>
         <p><strong>isHungry</strong> {{eachItem.isHungry}}</p>
+        <div ng-show='eachItem.editing'>
+          <input type="radio" ng-value='true' ng-model='eachItem.isHungry'> True <br>
+          <input type="radio" ng-value='false' ng-model='eachItem.isHungry'> False <br>
+        </div>
+        <button ng-hide='eachItem.editing' class='btn btn-warning pull-right' ng-click='edit(eachItem)'>Edit</button>
+        <button ng-show='eachItem.editing' class='btn btn-success pull-right' ng-click='update(eachItem)'>Update</button>
       </div>
     </div>
   </div>

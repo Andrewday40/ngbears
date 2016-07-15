@@ -9,10 +9,24 @@
     $scope.bears = BearsServices.bears;
     $scope.create = createBear;
     $scope.delete = deleteBear;
+    $scope.edit = editBears;
+    $scope.update = updateBears;
     getBears();
 
+    function editBears(bears){
+      bears.editing = true;
+    }
 
-
+    function updateBears(bears){
+      bears.editing = false;
+      bears.isAwake = bears.isAwake.toString();
+      bears.hasKids = bears.hasKids.toString();
+      bears.isHungry = bears.isHungry.toString();
+      BearsServices.update(bears.id, bears)
+                   .then(function(){
+                     getbears();
+                   });
+    }
 
 
     function getBears(){
